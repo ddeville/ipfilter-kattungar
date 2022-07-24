@@ -1,4 +1,4 @@
-package ipfilter
+package ipfilter_kattungar
 
 import (
 	"errors"

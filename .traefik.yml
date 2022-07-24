@@ -1,7 +1,7 @@
 displayName: IP Filter
 type: middleware
 
-import: ddeville/ipfilter
+import: ddeville/ipfilter-kattungar
 
 summary: 'Filter requests by IP'
 
