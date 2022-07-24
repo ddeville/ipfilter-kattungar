@@ -71,15 +71,15 @@ func (ip *Checker) Contains(addr string) (bool, error) {
 
 	for _, authorizedIP := range ip.authorizedIPs {
 		if authorizedIP.Equal(ipAddr) {
-			return true
+			return true, nil
 		}
 	}
 
 	for _, authorizedNet := range ip.authorizedIPsNet {
 		if authorizedNet.Contains(ipAddr) {
-			return true
+			return true, nil
 		}
 	}
 
-	return false
+	return false, nil
 }
