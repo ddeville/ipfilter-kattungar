@@ -3,7 +3,7 @@ type: middleware
 
 import: ddeville/ipfilter-kattungar
 
-summary: 'Filter requests by IP'
+summary: "Filter requests by IP"
 
 testData:
   SourceRange:
