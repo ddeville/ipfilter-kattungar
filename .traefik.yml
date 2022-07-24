@@ -1,4 +1,4 @@
-displayName: IP Filter
+displayName: IP Filter Kattungar
 type: middleware
 
 import: ddeville/ipfilter-kattungar

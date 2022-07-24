@@ -64,36 +64,22 @@ func (ip *Checker) Contains(addr string) (bool, error) {
 		return false, errors.New("empty IP address")
 	}
 
-	ipAddr, err := parseIP(addr)
-	if err != nil {
-		return false, fmt.Errorf("unable to parse address: %s: %w", addr, err)
+	ipAddr := net.ParseIP(addr)
+	if ipAddr == nil {
+		return false, fmt.Errorf("unable to parse address: %s", addr)
 	}
 
-	return ip.ContainsIP(ipAddr), nil
-}
-
-// ContainsIP checks if provided address is in the trusted IPs.
-func (ip *Checker) ContainsIP(addr net.IP) bool {
 	for _, authorizedIP := range ip.authorizedIPs {
-		if authorizedIP.Equal(addr) {
+		if authorizedIP.Equal(ipAddr) {
 			return true
 		}
 	}
 
 	for _, authorizedNet := range ip.authorizedIPsNet {
-		if authorizedNet.Contains(addr) {
+		if authorizedNet.Contains(ipAddr) {
 			return true
 		}
 	}
 
 	return false
-}
-
-func parseIP(addr string) (net.IP, error) {
-	userIP := net.ParseIP(addr)
-	if userIP == nil {
-		return nil, fmt.Errorf("can't parse IP from address %s", addr)
-	}
-
-	return userIP, nil
 }
